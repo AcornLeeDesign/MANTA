@@ -32,9 +32,9 @@ function App() {
         <CameraController targetZ={cameraDist} />
         
         {/* Black background */}
-        <color attach="background" args={['#000000']} />
+        <color attach="background" args={['#050505']} />
 
-        <fog attach="fog" args={['#000000', 2, 20]} />
+        <fog attach="fog" args={['#000000', 6, 25]} />
 
         {/* Ambient light */}
         <ambientLight intensity={0.5} />
@@ -94,6 +94,6 @@ function App() {
 // useGLTF.preload('/body.glb')
 // useGLTF.preload('/eyes.glb')
 // useGLTF.preload('/ribcage.glb')
-useGLTF.preload('/MANTA_CHEESECAKE.glb')
+useGLTF.preload(`${import.meta.env.BASE_URL}/MANTA_CHEESECAKE.glb`)
 
 export default App
