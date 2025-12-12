@@ -66,23 +66,23 @@ function App() {
           left: '50%',
           transform: 'translateX(-50%)',
           padding: '6px 12px',
-          backgroundColor: 'white',
-          opacity: '0.8',
-          color: 'black',
+          backgroundColor: 'rgba(255, 255, 255, 0.18)',
+          color: 'white',
           border: 'none',
           borderRadius: '99px',
           fontSize: '12px',
           cursor: 'pointer',
-          fontWeight: '500',
           transition: 'all 0.2s',
-          boxShadow: '0 2px 8px rgba(255, 255, 255, 0.2)',
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)',
         }}
         onMouseEnter={(e) => {
-          e.target.style.backgroundColor = '#f0f0f0'
-          e.target.style.transform = 'translateX(-50%) scale(1.05)'
+          e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.8)'
+          e.target.style.color = 'black'
+          e.target.style.transform = 'translateX(-50%) scale(1.02)'
         }}
         onMouseLeave={(e) => {
-          e.target.style.backgroundColor = 'white'
+          e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.18)'
+          e.target.style.color = 'white'
           e.target.style.transform = 'translateX(-50%) scale(1)'
         }}
       >

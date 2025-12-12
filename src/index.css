@@ -1,5 +1,13 @@
+@font-face {
+  font-family: 'Necto-Mono';
+  src: url('./assets/fonts/NectoMono-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: NectoMono-Regular;
   line-height: 1.5;
   font-weight: 400;
 
