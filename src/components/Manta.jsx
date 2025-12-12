@@ -9,7 +9,7 @@ import { useBodyGlassMaterial, useEyesMaterial, useMetalMaterial } from '../mate
 
 function Manta({ showBody = true }) {
   // const manta = useGLTF('/MANTA_CHEESECAKE.glb')
-  const manta = useGLTF(`${import.meta.env.BASE_URL}/MANTA_CHEESECAKE.glb`)
+  const manta = useGLTF(`/MANTA_CHEESECAKE.glb`)
   const mantaRef = useRef()
   const mousePos = useMousePosition()
 

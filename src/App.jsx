@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Canvas, useThree, useFrame } from '@react-three/fiber'
 import { useGLTF } from '@react-three/drei'
+import { Sky, OrbitControls } from '@react-three/drei';
 import Manta from './components/Manta'
 import './App.css'
 
@@ -18,6 +19,7 @@ function CameraController({ targetZ }) {
 
 function App() {
   const [showBody, setShowBody] = useState(true)
+  const sunPosition = [100, 20, 100]
 
   // Camera distance based on whether body is shown
   const cameraDist = showBody ? 8 : 4
@@ -32,7 +34,13 @@ function App() {
         <CameraController targetZ={cameraDist} />
         
         {/* Black background */}
-        <color attach="background" args={['#050505']} />
+        {/* <color attach="background" args={['#242424']} /> */}
+        <Sky
+          distance={450000} // The distance to the skydome
+          sunPosition={sunPosition} // Key property to control time of day/lighting
+          turbidity={10} // Controls the clean/polluted look of the air
+          rayleigh={6} // Affects how blue the sky looks
+        />
 
         <fog attach="fog" args={['#000000', 6, 25]} />
 
@@ -40,14 +48,14 @@ function App() {
         <ambientLight intensity={0.5} />
         
         {/* Directional light from above */}
-        <directionalLight position={[5, 10, 5]} intensity={10} />
+        <directionalLight position={sunPosition} intensity={1.5} />
         
         {/* Spotlight light the manta from below */}
         <spotLight
           position={[, -5, 2]}
           angle={1}
-          penumbra={2}
-          intensity={20}
+          penumbra={1}
+          intensity={10}
           castShadow
         />
         
@@ -94,6 +102,6 @@ function App() {
 // useGLTF.preload('/body.glb')
 // useGLTF.preload('/eyes.glb')
 // useGLTF.preload('/ribcage.glb')
-useGLTF.preload(`${import.meta.env.BASE_URL}/MANTA_CHEESECAKE.glb`)
+useGLTF.preload(`/MANTA_CHEESECAKE.glb`)
 
 export default App
