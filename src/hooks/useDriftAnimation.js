@@ -1,4 +1,5 @@
 import { useFrame } from "@react-three/fiber"
+import { useEffect, useState } from "react"
 
 export function useDriftAnimation(manta) {
     useFrame((state, delta) => {
@@ -11,10 +12,20 @@ export function useDriftAnimation(manta) {
         }
 
         const moveForward = 5
-        const zLimit = -90 * delta
+        const zLimit = 0
 
         if (masterControl.position.z >= zLimit) {
             masterControl.position.z -= moveForward * delta
         }
     })
 }
+
+// function handleClick() {
+//     const [clicked, setClicked] = useState(false)
+//     useEffect(() => {
+//         setClicked(prev => !prev)
+//         window.addEventListener("click", pointerdown);
+
+
+//     })
+// }
