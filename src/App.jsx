@@ -34,13 +34,7 @@ function App() {
         <CameraController targetZ={cameraDist} />
         
         {/* Black background */}
-        {/* <color attach="background" args={['#242424']} /> */}
-        <Sky
-          distance={450000} // The distance to the skydome
-          sunPosition={sunPosition} // Key property to control time of day/lighting
-          turbidity={10} // Controls the clean/polluted look of the air
-          rayleigh={6} // Affects how blue the sky looks
-        />
+        <color attach="background" args={['#000000']} />
 
         <fog attach="fog" args={['#000000', 6, 25]} />
 
@@ -48,14 +42,14 @@ function App() {
         <ambientLight intensity={0.5} />
         
         {/* Directional light from above */}
-        <directionalLight position={sunPosition} intensity={1.5} />
+        <directionalLight position={sunPosition} intensity={3} />
         
         {/* Spotlight light the manta from below */}
         <spotLight
-          position={[, -5, 2]}
+          position={[0, -5, 2]}
           angle={1}
           penumbra={1}
-          intensity={10}
+          intensity={15}
           castShadow
         />
         

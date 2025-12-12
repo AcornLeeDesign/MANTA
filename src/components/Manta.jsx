@@ -8,7 +8,6 @@ import * as THREE from 'three'
 import { useBodyGlassMaterial, useEyesMaterial, useMetalMaterial } from '../materials/mantaMaterials'
 
 function Manta({ showBody = true }) {
-  // const manta = useGLTF('/MANTA_CHEESECAKE.glb')
   const manta = useGLTF(`/MANTA_CHEESECAKE.glb`)
   const mantaRef = useRef()
   const mousePos = useMousePosition()

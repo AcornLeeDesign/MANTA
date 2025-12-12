@@ -19,13 +19,3 @@ export function useDriftAnimation(manta) {
         }
     })
 }
-
-// function handleClick() {
-//     const [clicked, setClicked] = useState(false)
-//     useEffect(() => {
-//         setClicked(prev => !prev)
-//         window.addEventListener("click", pointerdown);
-
-
-//     })
-// }
