@@ -70,7 +70,7 @@ function App() {
       {/* view buttons container */}
       <div style={{ 
         position: 'absolute', 
-        left: '16pxs',
+        left: '16px',
         bottom: '16px',
         display: 'flex',
         gap: '8px'
