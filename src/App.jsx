@@ -26,10 +26,10 @@ function App() {
 
   return (
     
-    <div style={{ width: '100vw', height: '100vh', margin: 0, padding: 0, backgroundColor: '#000' }}>
+    <div style={{ width: '100vw', height: '100vh', margin: 16, padding: 0, backgroundColor: '#000' }}>
       
       {/* Some overlay stuff */}
-      <div style={{ position: 'relative', display: 'flex', justifyContent: 'space-between', width: '100%', margin: 0, padding: 8, zIndex: 1 }}>
+      <div style={{ position: 'relative', display: 'flex', justifyContent: 'space-between', width: '100%', zIndex: 1 }}>
         <h5 style={{ color: 'rgba(255, 255, 255, 1)' }}>Manta Ray</h5>
         <h5 style={{ color: 'rgba(255, 255, 255, 0.6)' }}>Artifact No.1</h5>
       </div>
@@ -70,8 +70,7 @@ function App() {
       {/* view buttons container */}
       <div style={{ 
         position: 'absolute', 
-        bottom: '8px', 
-        left: '8px',
+        bottom: '16px',
         display: 'flex',
         gap: '8px'
       }}>
