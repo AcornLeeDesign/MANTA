@@ -57,18 +57,30 @@ function App() {
         <Manta showBody={showBody} showRig={showRig} />
       </Canvas>
 
-      {/* Toggle button */}
-      <button
-        onClick={() => setShowBody(!showBody)}
-        className="toggle-button"
-        style={{
-          position: 'absolute',
-          bottom: '20px',
-          left: '50%',
-        }}
-      >
-        {showBody ? 'skeleton' : 'body'}
-      </button>
+      <div style={{ 
+        position: 'absolute', 
+        bottom: '20px', 
+        left: '50%',
+        transform: 'translateX(-50%)',
+        display: 'flex',
+        gap: '12px'
+      }}>
+        {/* Show Skeleton View */}
+        <button
+          onClick={() => setShowBody(!showBody)}
+          className="toggle-button"
+        >
+          {showBody ? 'skeleton' : 'body'}
+        </button>
+        
+        {/* Show Rig View */}
+        <button
+          onClick={() => setShowRig(!showRig)}
+          className="toggle-button"
+        >
+          {showRig ? 'no rig' : 'rig'}
+        </button>
+      </div>
     </div>
   )
 }
