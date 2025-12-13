@@ -19,7 +19,6 @@ function CameraController({ targetZ }) {
 
 function App() {
   const [showBody, setShowBody] = useState(true)
-  const sunPosition = [100, 20, 100]
 
   // Camera distance based on whether body is shown
   const cameraDist = showBody ? 8 : 4
@@ -34,19 +33,19 @@ function App() {
         <CameraController targetZ={cameraDist} />
         
         {/* Black background */}
-        <color attach="background" args={['#000000']} />
+        <color attach="background" args={['#080808']} />
 
         <fog attach="fog" args={['#000000', 6, 25]} />
 
         {/* Ambient light */}
-        <ambientLight intensity={0.5} />
+        <ambientLight intensity={0.3} />
         
         {/* Directional light from above */}
-        <directionalLight position={sunPosition} intensity={3} />
+        <directionalLight position={[0, 12, 5]} intensity={3} />
         
         {/* Spotlight light the manta from below */}
         <spotLight
-          position={[0, -5, 2]}
+          position={[0, -5, 5]}
           angle={1}
           penumbra={1}
           intensity={15}
@@ -72,7 +71,7 @@ function App() {
           borderRadius: '99px',
           fontSize: '12px',
           cursor: 'pointer',
-          transition: 'all 0.2s',
+          transition: 'all 1s',
           boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)',
         }}
         onMouseEnter={(e) => {
