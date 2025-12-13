@@ -7,7 +7,7 @@ import { useDriftAnimation } from '../hooks/useDriftAnimation'
 import * as THREE from 'three'
 import { useBodyGlassMaterial, useEyesMaterial, useMetalMaterial } from '../materials/mantaMaterials'
 
-function Manta({ showBody = true }) {
+function Manta({ showBody = true, showRig = false }) {
   const manta = useGLTF(`/MANTA_CHEESECAKE.glb`)
   const mantaRef = useRef()
   const mousePos = useMousePosition()
@@ -42,12 +42,22 @@ function Manta({ showBody = true }) {
     mantaRef.current.rotation.x += (-targetY - mantaRef.current.rotation.x) * 0.05
   })
 
-  return (
-    <group ref={mantaRef} position={[0, 0, 0]}>
-      <primitive object={manta.scene} rotation={[0, Math.PI, 0]}/>
-      {/* <primitive object={new THREE.SkeletonHelper(manta.scene)} /> */}
-    </group>
-  )
+  if (showRig) {
+    return (
+      <group ref={mantaRef} position={[0, 0, 0]}>
+        <primitive object={manta.scene} rotation={[0, Math.PI, 0]}/>
+        <primitive object={new THREE.SkeletonHelper(manta.scene)} />
+      </group>
+    )
+  }
+  else {
+    return (
+      <group ref={mantaRef} position={[0, 0, 0]}>
+        <primitive object={manta.scene} rotation={[0, Math.PI, 0]}/>
+      </group>
+    )
+  }
+
 }
 
 export default Manta

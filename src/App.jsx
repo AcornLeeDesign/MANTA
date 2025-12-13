@@ -19,6 +19,7 @@ function CameraController({ targetZ }) {
 
 function App() {
   const [showBody, setShowBody] = useState(true)
+  const [showRig, setShowRig] = useState(false)
 
   // Camera distance based on whether body is shown
   const cameraDist = showBody ? 8 : 4
@@ -53,36 +54,17 @@ function App() {
         />
         
         {/* Manta component */}
-        <Manta showBody={showBody} />
+        <Manta showBody={showBody} showRig={showRig} />
       </Canvas>
 
       {/* Toggle button */}
       <button
         onClick={() => setShowBody(!showBody)}
+        className="toggle-button"
         style={{
           position: 'absolute',
           bottom: '20px',
           left: '50%',
-          transform: 'translateX(-50%)',
-          padding: '6px 12px',
-          backgroundColor: 'rgba(255, 255, 255, 0.18)',
-          color: 'white',
-          border: 'none',
-          borderRadius: '99px',
-          fontSize: '12px',
-          cursor: 'pointer',
-          transition: 'all 1s',
-          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)',
-        }}
-        onMouseEnter={(e) => {
-          e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.8)'
-          e.target.style.color = 'black'
-          e.target.style.transform = 'translateX(-50%) scale(1.02)'
-        }}
-        onMouseLeave={(e) => {
-          e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.18)'
-          e.target.style.color = 'white'
-          e.target.style.transform = 'translateX(-50%) scale(1)'
         }}
       >
         {showBody ? 'skeleton' : 'body'}
