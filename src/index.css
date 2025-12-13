@@ -7,12 +7,12 @@
 }
 
 :root {
-  font-family: NectoMono-Regular;
-  line-height: 1.5;
+  font-family: 'Necto-Mono', monospace;
+  line-height: 1.2;
+  letter-spacing: -0.05rem;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: white;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -35,22 +35,30 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  color: white;
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: var(--h1);
+  line-height: 1.2;
+}
+h2 {
+  font-size: var(--h2);
+  line-height: 1.2;
+}
+h3 {
+  font-size: var(--h3);
+  line-height: 1.2;
+}
+h4 {
+  font-size: var(--h4);
+  line-height: 1.2;
+}
+h5 {
+  font-size: var(--h5);
+  line-height: 1.2;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+p {
+  font-size: 0.875rem;
 }

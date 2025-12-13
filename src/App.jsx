@@ -25,45 +25,55 @@ function App() {
   const cameraDist = showBody ? 8 : 4
 
   return (
+    
     <div style={{ width: '100vw', height: '100vh', margin: 0, padding: 0, backgroundColor: '#000' }}>
-      <Canvas 
-        camera={{ position: [0, 0, cameraDist], fov: 40, near: 0.1, far: 200 }}
-        gl={{ alpha: false }}
-      >
-        {/* Camera controller for smooth transitions */}
-        <CameraController targetZ={cameraDist} />
-        
-        {/* Black background */}
-        <color attach="background" args={['#080808']} />
+      
+      {/* Some overlay stuff */}
+      <div style={{ position: 'relative', display: 'flex', justifyContent: 'space-between', width: '100%', margin: 0, padding: 8, zIndex: 1 }}>
+        <h5 style={{ color: 'rgba(255, 255, 255, 1)' }}>Manta Ray</h5>
+        <h5 style={{ color: 'rgba(255, 255, 255, 0.6)' }}>Artifact No.1</h5>
+      </div>
 
-        <fog attach="fog" args={['#000000', 6, 25]} />
+      <div style={{ position: 'fixed', inset: 0, margin: 0, padding: 0, width: '100vw', height: '100vh', zIndex: 0 }}>
+        <Canvas 
+          camera={{ position: [0, 0, cameraDist], fov: 40, near: 0.1, far: 200 }}
+          gl={{ alpha: false }}
+        >
+          {/* Camera controller for smooth transitions */}
+          <CameraController targetZ={cameraDist} />
+          
+          {/* Black background */}
+          <color attach="background" args={['#080808']} />
 
-        {/* Ambient light */}
-        <ambientLight intensity={0.3} />
-        
-        {/* Directional light from above */}
-        <directionalLight position={[0, 12, 5]} intensity={3} />
-        
-        {/* Spotlight light the manta from below */}
-        <spotLight
-          position={[0, -5, 5]}
-          angle={1}
-          penumbra={1}
-          intensity={15}
-          castShadow
-        />
-        
-        {/* Manta component */}
-        <Manta showBody={showBody} showRig={showRig} />
-      </Canvas>
+          <fog attach="fog" args={['#000000', 6, 25]} />
 
+          {/* Ambient light */}
+          <ambientLight intensity={0.3} />
+          
+          {/* Directional light from above */}
+          <directionalLight position={[0, 12, 5]} intensity={3} />
+          
+          {/* Spotlight light the manta from below */}
+          <spotLight
+            position={[0, -5, 5]}
+            angle={1}
+            penumbra={1}
+            intensity={15}
+            castShadow
+          />
+          
+          {/* Manta component */}
+          <Manta showBody={showBody} showRig={showRig} />
+        </Canvas>
+      </div>
+      
+      {/* view buttons container */}
       <div style={{ 
         position: 'absolute', 
-        bottom: '20px', 
-        left: '50%',
-        transform: 'translateX(-50%)',
+        bottom: '8px', 
+        left: '8px',
         display: 'flex',
-        gap: '12px'
+        gap: '8px'
       }}>
         {/* Show Skeleton View */}
         <button
@@ -85,10 +95,7 @@ function App() {
   )
 }
 
-// Preload all models for better performance
-// useGLTF.preload('/body.glb')
-// useGLTF.preload('/eyes.glb')
-// useGLTF.preload('/ribcage.glb')
+// Preload model for better performance
 useGLTF.preload(`/MANTA_CHEESECAKE.glb`)
 
 export default App
