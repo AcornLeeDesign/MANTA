@@ -1,32 +1,31 @@
 import { useState, useEffect } from 'react'
 
-// Hook that tracks mouse position and converts it to normalized coordinates
-
 export function useMousePosition() {
-  // Raw mouse position
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
 
   useEffect(() => {
     const handleMouseMove = (event) => {
-      // Window dimensions
-      const width = window.innerWidth
-      const height = window.innerHeight
-
-      // Convert pixel coordinates to normalized coordinates (-1 to 1)
-      // event.clientX is 0 at left edge, width at right edge
-      // We subtract width/2 to center it, then divide by width/2 to normalize
-      const x = (event.clientX / width) * 2 - 1
-      const y = (event.clientY / height) * 2 - 1
-
+      // Normalize mouse position to -1 to 1 range
+      // Center of screen is (0, 0)
+      // X: -1 (left) to 1 (right)
+      // Y: 1 (top) to -1 (bottom)
+      const x = (event.clientX / window.innerWidth) * 2 - 1
+      const y = -(event.clientY / window.innerHeight) * 2 + 1
+      
       setMousePos({ x, y })
     }
 
-    // Add event listener when model mounts
-    window.addEventListener('mousemove', handleMouseMove)
+    const handleMouseLeave = () => {
+      // Reset to center when mouse leaves window
+      setMousePos({ x: 0, y: 0 })
+    }
 
-    // Remove event listener when model unmounts (no memory leaks)
+    window.addEventListener('mousemove', handleMouseMove)
+    window.addEventListener('mouseleave', handleMouseLeave)
+
     return () => {
       window.removeEventListener('mousemove', handleMouseMove)
+      window.removeEventListener('mouseleave', handleMouseLeave)
     }
   }, [])
 

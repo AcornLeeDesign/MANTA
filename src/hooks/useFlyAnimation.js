@@ -26,8 +26,6 @@ export function useFlyAnimation(manta) {
     const speed = 2         // flap speed
     const bodyDelay = 0.2   // seconds body lags
 
-    // Precompute a small, per‑bone phase offset so the tail has a
-    // slightly "random" but stable motion across renders.
     const spinePhaseOffsets = useMemo(() => {
         return BONE_GROUPS.spine.map((_, i) => {
             // Simple deterministic pseudo‑random based on index
