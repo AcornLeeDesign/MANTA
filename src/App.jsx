@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Canvas, useThree, useFrame } from '@react-three/fiber'
 import { useGLTF } from '@react-three/drei'
-import { Sky, OrbitControls } from '@react-three/drei';
 import Manta from './components/Manta'
+import writing from './content/writing.txt?raw'
 import './App.css'
 
 // Component to smoothly animate camera position
@@ -17,23 +17,82 @@ function CameraController({ targetZ }) {
   return null
 }
 
+function Typewriter({ content }) {
+  const fullText = content;
+  const [displayed, setDisplayed] = useState("");
+
+  useEffect(() => {
+    if (typeof fullText !== "string") return;
+
+    setDisplayed("");       // reset when text changes
+    let i = 0;
+
+    const interval = setInterval(() => {
+      i += 1;
+      setDisplayed(fullText.slice(0, i));  // always match original text
+      if (i >= fullText.length) clearInterval(interval);
+    }, 50);
+
+    return () => clearInterval(interval);
+  }, [fullText]);
+
+  return <>{displayed}</>;
+}
+
+function ContentBlock({ showContent, content, showBody, showRig }) {
+  return (
+    <>
+      <div className='relative flex flex-col bg-gray-700 gap-4'>
+        <div className='flex relative gap-2 justify-center'>          
+          {/* Show Skeleton View */}
+          <button
+            onClick={() => setShowBody(!showBody)}
+            className="toggle-button"
+          >
+            {showBody ? 'skeleton' : 'body'}
+          </button>
+          
+          {/* Show Rig View */}
+          <button
+            onClick={() => setShowRig(!showRig)}
+            className="toggle-button"
+          >
+            {showRig ? 'no rig' : 'rig'}
+          </button>
+        </div>
+        
+        {showContent &&
+          <p className='text-white'><Typewriter content={content} /></p>
+        }
+      </div>
+    </>
+  );
+}
+
 function App() {
   const [showBody, setShowBody] = useState(true)
   const [showRig, setShowRig] = useState(false)
-
+  const [showContent, setShowContent] = useState(false)
+  
   // Camera distance based on whether body is shown
   const cameraDist = showBody ? 8 : 4
 
-  return (
-    
-    <div style={{ width: '100vw', height: '100vh', backgroundColor: '#000' }}>
-      
-      {/* Some overlay stuff */}
-      <div style={{ position: 'relative', display: 'flex', justifyContent: 'space-between', width: '100%', padding: 16, zIndex: 1 }}>
-        <h5 style={{ color: 'rgba(255, 255, 255, 1)' }}>Manta Ray</h5>
-        <h5 style={{ color: 'rgba(255, 255, 255, 0.6)' }}>Artifact No.1</h5>
-      </div>
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY
+      console.log('Scrolling:', scrollPosition)
+      setShowContent(scrollPosition > 1)
+    }
 
+    window.addEventListener('scroll', handleScroll)
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  return (
+    // Parent
+    <div className='relative w-full min-h-screens'>
+      {/* == Canvas == */}
       <div style={{ position: 'fixed', inset: 0, margin: 0, padding: 0, width: '100vw', height: '100vh', zIndex: 0 }}>
         <Canvas 
           camera={{ position: [0, 0, cameraDist], fov: 40, near: 0.1, far: 200 }}
@@ -66,31 +125,27 @@ function App() {
           <Manta showBody={showBody} showRig={showRig} />
         </Canvas>
       </div>
-      
-      {/* view buttons container */}
-      <div style={{ 
-        position: 'absolute', 
-        left: '16px',
-        bottom: '16px',
-        display: 'flex',
-        gap: '8px'
-      }}>
-        {/* Show Skeleton View */}
-        <button
-          onClick={() => setShowBody(!showBody)}
-          className="toggle-button"
-        >
-          {showBody ? 'skeleton' : 'body'}
-        </button>
         
-        {/* Show Rig View */}
-        <button
-          onClick={() => setShowRig(!showRig)}
-          className="toggle-button"
-        >
-          {showRig ? 'no rig' : 'rig'}
-        </button>
-      </div>
+      {/* === Hero === */}
+      <main className="relative w-full z-[1] p-4">
+        <section className="w-full h-screen flex flex-col justify-between">
+          {/* Title stuff */}
+          <div className="flex justify-center gap-2">
+            <h5 style={{ color: 'rgba(255, 255, 255, 1)' }}>Manta Ray</h5>
+            <h5 style={{ color: 'rgba(255, 255, 255, 0.6)' }}>Artifact No.1</h5>
+          </div>
+        </section>
+        
+        {/* === Written content === */}
+        <section className='w-full'>
+          <ContentBlock 
+            showContent={showContent} 
+            content={writing} 
+            showBody={showBody}
+            showRig={showRig}
+          />
+        </section>
+      </main>
     </div>
   )
 }

@@ -1,6 +1,16 @@
+@import "tailwindcss";
+
 @font-face {
   font-family: 'Necto-Mono';
   src: url('./assets/fonts/NectoMono-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Authentic-Sans';
+  src: url('./assets/fonts/authentic-sans-90.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -31,8 +41,6 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
   color: white;
