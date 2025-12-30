@@ -6,9 +6,8 @@
   border-radius: 8px;
   font-family: inherit;
   font-size: 0.875rem;
-  letter-spacing: -0.05rem;
   cursor: pointer;
-  transition: all 0.8s;
+  transition: all 0.3s;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -26,14 +25,11 @@
 }
 
 .content {
-  padding: 8px;
-  color: rgba(255, 255, 255, 0.7);
   font-size: 0.875rem;
   line-height: 1.2;
   min-width: 20rem;
   max-width: 20rem;
-  font-family: 'Authentic-Sans', sans-serif;
-  letter-spacing: 0rem;
+  font-family: inherit
 }
 
 .description-preview {

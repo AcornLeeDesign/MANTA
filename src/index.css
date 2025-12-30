@@ -1,25 +1,24 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: 'Necto-Mono';
-  src: url('./assets/fonts/NectoMono-Regular.otf') format('opentype');
+  font-family: 'Authentic-Sans';
+  src: url('./assets/fonts/authentic-sans-60.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Authentic-Sans';
-  src: url('./assets/fonts/authentic-sans-90.otf') format('opentype');
+  font-family: 'LeagueMono';
+  src: url('./assets/fonts/LeagueMono-NarrowThin.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
 :root {
-  font-family: 'Necto-Mono', monospace;
-  line-height: 1.2;
-  letter-spacing: -0.05rem;
+  font-family: 'LeagueMono', mono;
+  line-height: 1.5rem;
 
   color-scheme: light dark;
   color: white;
