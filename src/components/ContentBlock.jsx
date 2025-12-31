@@ -28,7 +28,7 @@ export function ContentBlock({ content, showBody, showRig, setShowBody, setShowR
     return (
         <>
             <motion.div 
-                className='bottom-[calc(env(safe-area-inset-bottom)+0px)]
+                className='fixed left-0 right-0 z-50 bottom-[calc(env(safe-area-inset-bottom)+0px)]
     md:static md:block'
                 initial={{ y: -contentHeight }} 
                 animate={{ y: open ? -contentHeight : 0 }}
@@ -42,7 +42,7 @@ export function ContentBlock({ content, showBody, showRig, setShowBody, setShowR
                 <motion.button 
                     onTap={() => setOpen((prev) => !prev)}
                     whileTap={{ scale: 0.95 }}
-                    className="mx-auto block rounded-t-xl py-1 px-6 border border-1.5 border-zinc-600 bg-zinc-800/20 backdrop-blur-[3px]"
+                    className="mx-auto block rounded-t-xl py-1 px-6 border border-1.5 border-zinc-600 bg-zinc-800/20 backdrop-blur-[3px] mb-[env(safe-area-inset-bottom)] md:mb-0"
                 >
                     <ChevronUp size={24} color="white" strokeWidth={1.5} />
                 </motion.button>
@@ -54,7 +54,8 @@ export function ContentBlock({ content, showBody, showRig, setShowBody, setShowR
                         border border-1.5 border-zinc-600 
                         bg-zinc-800/20 backdrop-blur-[3px]
                         gap-4 p-4
-                        rounded-t-xl'
+                        rounded-t-xl
+                        md:absolute md:left-1/2 md:-translate-x-1/2'
                 >
                     <div className='flex relative gap-2 justify-center'>          
                         {/* Show Skeleton View */}
