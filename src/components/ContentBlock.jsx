@@ -28,6 +28,8 @@ export function ContentBlock({ content, showBody, showRig, setShowBody, setShowR
     return (
         <>
             <motion.div 
+                className='bottom-[calc(env(safe-area-inset-bottom)+0px)]
+    md:static md:block'
                 initial={{ y: -contentHeight }} 
                 animate={{ y: open ? -contentHeight : 0 }}
                 transition={{
@@ -47,7 +49,7 @@ export function ContentBlock({ content, showBody, showRig, setShowBody, setShowR
 
                 <div 
                     ref={contentRef}
-                    className='absolute flex flex-col max-w-96 
+                    className='absolute flex flex-col w-[min(24rem,calc(100vw-2rem))]
                         left-1/2 transform -translate-x-1/2 
                         border border-1.5 border-zinc-600 
                         bg-zinc-800/20 backdrop-blur-[3px]
