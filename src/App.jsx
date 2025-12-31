@@ -27,7 +27,7 @@ function App() {
   const cameraDist = showBody ? 8 : 4
 
   return (
-    <div className='relative w-full'>
+    <div className="fixed inset-0 w-screen h-screen overflow-hidden">
       {/* == Canvas == */}
       <div className="fixed inset-0 w-screen h-screen m-0 p-0 z-0">
         <Canvas 
@@ -63,7 +63,7 @@ function App() {
       </div>
         
       {/* === Hero === */}
-      <main className="relative flex flex-col w-full z-[1] h-screen overflow-hidden">
+      <main className="relative flex flex-col w-full z-[1] h-screen overflow-hidden touch-none overscroll-none">
         <section className="w-full flex flex-col grow justify-between">
           {/* Title stuff */}
           <div className="flex justify-center p-4">

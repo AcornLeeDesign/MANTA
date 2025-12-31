@@ -20,11 +20,6 @@ export function useMousePosition() {
       setMousePos({ x: 0, y: 0 })
     }
 
-    const handleTouchStart = (event) => {
-      // Prevent default to stop any initial scroll behavior
-      event.preventDefault()
-    }
-
     const handleTouchMove = (event) => {
       // Prevent Default to avoid scrolling while dragging
       event.preventDefault()
@@ -46,15 +41,13 @@ export function useMousePosition() {
 
     window.addEventListener('mousemove', handleMouseMove)
     window.addEventListener('mouseleave', handleMouseLeave)
-    
-    window.addEventListener('touchstart', handleTouchStart, { passive: false })
+
     window.addEventListener('touchmove', handleTouchMove)
     window.addEventListener('touchend', handleTouchEnd)
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove)
       window.removeEventListener('mouseleave', handleMouseLeave)
-      window.removeEventListener('touchstart', handleTouchStart)
       window.removeEventListener('touchmove', handleTouchMove)
       window.removeEventListener('touchend', handleTouchEnd)
     }
