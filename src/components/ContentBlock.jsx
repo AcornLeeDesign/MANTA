@@ -28,10 +28,8 @@ export function ContentBlock({ content, showBody, showRig, setShowBody, setShowR
     return (
         <>
             <motion.div 
-                onTap={() => setOpen((prev) => !prev)}
                 initial={{ y: -contentHeight }} 
                 animate={{ y: open ? -contentHeight : 0 }}
-                whileTap={{ scale: 0.95 }}
                 transition={{
                     type: "spring",
                     stiffness: 260,
@@ -39,16 +37,20 @@ export function ContentBlock({ content, showBody, showRig, setShowBody, setShowR
                     mass: 0.7,
                 }}
             >
-                <button className="mx-auto block rounded-t-xl py-1 px-6 border border-1.5 border-zinc-600 bg-zinc-800">
+                <motion.button 
+                    onTap={() => setOpen((prev) => !prev)}
+                    whileTap={{ scale: 0.95 }}
+                    className="mx-auto block rounded-t-xl py-1 px-6 border border-1.5 border-zinc-600 bg-zinc-800/20 backdrop-blur-[3px]"
+                >
                     <ChevronUp size={24} color="white" strokeWidth={1.5} />
-                </button>
+                </motion.button>
 
                 <div 
                     ref={contentRef}
                     className='absolute flex flex-col max-w-96 
                         left-1/2 transform -translate-x-1/2 
                         border border-1.5 border-zinc-600 
-                        bg-zinc-800 
+                        bg-zinc-800/20 backdrop-blur-[3px]
                         gap-4 p-4
                         rounded-t-xl'
                 >

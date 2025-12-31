@@ -20,12 +20,36 @@ export function useMousePosition() {
       setMousePos({ x: 0, y: 0 })
     }
 
+    const handleTouchMove = (event) => {
+      // Prevent Default to avoid scrolling while dragging
+      event.preventDefault()
+
+      // get the first touch point
+      const touch = event.touches[0]
+      if (!touch) return
+
+      // Normalize touch position
+      const x = (touch.clientX / window.innerWidth) * 2 - 1
+      const y = -(touch.clientY / window.innerHeight) * 2 + 1
+
+      setMousePos({ x, y })
+    }
+
+    const handleTouchEnd = () => {
+      setMousePos({ x: 0, y: 0 })
+    }
+
     window.addEventListener('mousemove', handleMouseMove)
     window.addEventListener('mouseleave', handleMouseLeave)
+
+    window.addEventListener('touchmove', handleTouchMove)
+    window.addEventListener('touchend', handleTouchEnd)
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove)
       window.removeEventListener('mouseleave', handleMouseLeave)
+      window.removeEventListener('touchmove', handleTouchMove)
+      window.removeEventListener('touchend', handleTouchEnd)
     }
   }, [])
 
