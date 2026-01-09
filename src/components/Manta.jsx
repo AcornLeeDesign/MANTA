@@ -21,8 +21,6 @@ function Manta({ showBody = true, showRig = false }) {
   useEyesMaterial(manta.scene, 'EYES', showBody)
   useMetalMaterial(manta.scene, ['RIBCAGE', 'TAILBONE', 'FISHBONE', 'LIL_WING'])
 
-  // Base rotation
-
   // useFrame runs on every frame > Update the rotation to follow the mouse
   useFrame(() => {
     if (!mantaRef.current) return
@@ -57,7 +55,6 @@ function Manta({ showBody = true, showRig = false }) {
       </group>
     )
   }
-
 }
 
 export default Manta

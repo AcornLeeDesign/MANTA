@@ -7,6 +7,31 @@ import ContentBlock from './components/ContentBlock'
 import writing from './content/writing.txt?raw'
 import './App.css'
 
+// Drive the render loop at a fixed rate (default 60fps)
+function FrameLimiter({ fps = 60 }) {
+  const invalidate = useThree((state) => state.invalidate)
+
+  useEffect(() => {
+    let raf
+    const frameInterval = 1000 / fps
+    let last = performance.now()
+
+    const loop = (now) => {
+      const delta = now - last
+      if (delta >= frameInterval) {
+        last = now - (delta % frameInterval) // reduce drift over time
+        invalidate()
+      }
+      raf = requestAnimationFrame(loop)
+    }
+
+    raf = requestAnimationFrame(loop)
+    return () => cancelAnimationFrame(raf)
+  }, [fps, invalidate])
+
+  return null
+}
+
 // Component to smoothly animate camera position
 function CameraController({ targetZ }) {
   const { camera } = useThree()
@@ -31,9 +56,11 @@ function App() {
       {/* == Canvas == */}
       <div className="fixed inset-0 w-screen h-screen m-0 p-0 z-0">
         <Canvas 
+          frameloop="demand"
           camera={{ position: [0, 0, cameraDist], fov: 40, near: 0.1, far: 200 }}
           gl={{ alpha: false }}
         >
+          <FrameLimiter fps={60} />
           {/* Camera controller for smooth transitions */}
           <CameraController targetZ={cameraDist} />
           
